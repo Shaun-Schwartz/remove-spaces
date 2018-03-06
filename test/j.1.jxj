@@ -1,8 +1,0 @@
-
-down vote
-favorite
-Is there a simple/one-line python equivalent to R's gsub function?
-
-strings = c("Important text,      !Comment that could be removed", "Other String")
-gsub("(,[ ]*!.*)$", "", strings)
-# [1] "Important text" "Other String"  

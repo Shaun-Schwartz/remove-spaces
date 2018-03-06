@@ -1,1 +1,0 @@
-It looks like re.sub has a count argument. In R, gsub removes all instances of the pattern, so gsub("th", "", "this that other") would return "is at oer". Do you know the argument for count that would tell python to remove all instances of the pattern? 
