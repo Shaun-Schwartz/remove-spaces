@@ -4,7 +4,7 @@ copy remove_spaces.py, run with python3, and enter the path to the directory hou
 
 ##### Flags:
 ```
--h,--help for help
+-h, --help for help
 -p, --path to specify the path to the directory housing the files to be renamed
 -d, --directories to replace spaces in directory names as well as file names (default does not rename directories)
 TODO -r, --recursive to recursively replace spaces in file names (and directory names if the -d flag is used)
