@@ -16,11 +16,6 @@ parser.add_argument('-cr', '--charactertoreplace', type=str, default=' ',
     help='Specify which character should be replaced (default is space)')
 args = parser.parse_args()
 
-d = args.directories
-r = args.recursive
-rc = args.replacecharacter
-cr = args.charactertoreplace
-
 if args.path == None:
     path = input("Enter path to directory: ")
 else:
@@ -28,13 +23,31 @@ else:
 
 if path[-1] != "/": path += "/"
 
+def recursive(path):
+    for file in os.listdir(path):
+        if os.path.isfile(os.path.join(path, file)) and args.charactertoreplace in file:
+            new_name = re.sub(args.charactertoreplace, args.replacecharacter, file)
+            print('File to rename: {}'.format(path + file))
+            try:
+                os.rename(path + file, path + new_name)
+                print('File renamed to: {}'.format(path + new_name))
+            except:
+                print('Couldn\'t rename file')
+        elif os.path.isdir(os.path.join(path, file)):
+            if args.charactertoreplace in file and args.directories:
+                new_name = re.sub(args.charactertoreplace, args.replacecharacter, file)
+                print('Directory to rename: {}'.format(path + file))
+                try:
+                    os.rename(path + file, path + new_name)
+                    print('Directory renamed to: {}'.format(path + new_name))
+                    recursive(path + new_name + '/')
+                except:
+                    print('Couldn\'t rename Directory: {}'.format(path + file))
+            else:
+                recursive(path + file + '/')
+
 if args.recursive:
-    for folder, subdir, files in os.walk(path):
-        if os.path.isdir(folder):
-            print('This is a directory {}'.format(folder))
-        for file in files:
-            if os.path.isfile(os.path.join(folder + file)):
-                print('This is a file {}'.format(folder + file))
+    recursive(path)
 else:
     if args.directories:
         for file in os.listdir(path):
