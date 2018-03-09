@@ -1,6 +1,9 @@
-Simple command-line script to replaces spaces in file names with '.'
+Command-line script to rename files. Default behaviour is to replace spaces in file names with a dot. The rc and cr flags (all flags below) allow for customization of this behaviour. Additional default behaviour: directories are not renamed, and files/ directories are not renamed recursively.
 
 copy remove_spaces.py, run with python3, and enter the path to the directory housing the files to be renamed
+
+#### Caution:
+If replacing or substituting in special characters do not use the -rc or -cr flags. Rather edit default_characters.py. The reason for this is many special characters are reserved Unix characters which may (likely) cause unexpected behaviour.
 
 ##### Flags:
 ```
