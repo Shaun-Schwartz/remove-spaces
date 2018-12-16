@@ -6,6 +6,8 @@ import argparse
 from default_characters import DEFAULT_RC, DEFAULT_CR
 
 parser = argparse.ArgumentParser(description='Replace spaces in file names')
+parser.add_argument('path', type=str,
+    help='Specify the path to the directory housing the files to be renamed')
 parser.add_argument('-p', '--path', type=str,
     help='Specify the path to the directory housing the files to be renamed')
 parser.add_argument('-d', '--directories', action='store_true', default=False,
@@ -18,11 +20,7 @@ parser.add_argument('-cr', '--charactertoreplace', type=str, default=DEFAULT_CR,
     help='Specify which character should be replaced (default is space)')
 args = parser.parse_args()
 
-if args.path == None:
-    path = input("Enter path to directory: ")
-else:
-    path = args.path
-
+path = args.path
 if path[-1] != "/": path += "/"
 
 def recursive(path):
